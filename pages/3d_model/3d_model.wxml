@@ -1,0 +1,115 @@
+<!-- 匠影工坊 - 非遗3D模型展示 -->
+<view class="page-container">
+  
+  <!-- ========== 3D 展示区（触控旋转） ========== -->
+  <view class="viewer-section">
+    <!-- 360°旋转提示文字 -->
+    <view class="rotate-hint" wx:if="{{!isDragging}}">
+      <text class="hint-icon">👆</text>
+      <text class="hint-text">手指滑动旋转查看</text>
+    </view>
+    
+    <!-- 3D模型展示容器（CSS 3D透视旋转） -->
+    <view 
+      class="model-stage"
+      bindtouchstart="onTouchStart"
+      bindtouchmove="onTouchMove"
+      bindtouchend="onTouchEnd"
+    >
+      <!-- 背景装饰光环 -->
+      <view class="glow-ring" animation="{{ringAni}}"></view>
+      
+      <!-- 模型主图（带3D旋转） -->
+      <image 
+        class="model-3d-image" 
+        src="{{currentModel.image}}"
+        mode="aspectFit"
+        style="transform: rotateY({{rotateY}}deg) rotateX({{rotateX}}deg) scale({{scale}});"
+      ></image>
+      
+      <!-- 粒子装饰 -->
+      <view class="particles">
+        <view class="particle p1"></view>
+        <view class="particle p2"></view>
+        <view class="particle p3"></view>
+        <view class="particle p4"></view>
+        <view class="particle p5"></view>
+        <view class="particle p6"></view>
+      </view>
+    </view>
+  </view>
+
+  <!-- ========== 模型选择卡片（横向滚动） ========== -->
+  <view class="model-selector">
+    <scroll-view 
+      class="model-scroll" 
+      scroll-x 
+      enhanced 
+      show-scrollbar="{{false}}"
+      scroll-with-animation
+    >
+      <view class="model-cards">
+        <view 
+          wx:for="{{models}}" 
+          wx:key="id"
+          class="model-card {{currentModel.id === item.id ? 'active' : ''}}"
+          style="border-color: {{currentModel.id === item.id ? currentModel.color : 'transparent'}};"
+          data-index="{{index}}"
+          bindtap="selectModel"
+        >
+          <!-- 卡片图片 -->
+          <view class="card-img-wrap">
+            <image 
+              src="{{item.thumbnail}}" 
+              mode="aspectFill"
+              class="card-img"
+            ></image>
+            <!-- 选中遮罩 -->
+            <view class="card-overlay" wx:if="{{currentModel.id === item.id}}">
+              <text class="check-icon">✓</text>
+            </view>
+          </view>
+          <!-- 卡片标题 -->
+          <text class="card-name">{{item.name}}</text>
+        </view>
+      </view>
+    </scroll-view>
+  </view>
+
+  <!-- ========== 模型信息面板 ========== -->
+  <view class="info-panel" style="border-top-color: {{currentModel.color}};">
+    <view class="info-header">
+      <view class="info-title-row">
+        <view class="color-dot" style="background: {{currentModel.color}};"></view>
+        <text class="model-title">{{currentModel.name}}</text>
+      </view>
+      <text class="model-subtitle">{{currentModel.subtitle}}</text>
+    </view>
+    
+    <view class="info-tags">
+      <view class="tag" style="background: {{currentModel.color}}22; color: {{currentModel.color}};">
+        <text>{{currentModel.level}}</text>
+      </view>
+      <view class="tag" style="background: {{currentModel.color}}22; color: {{currentModel.color}};">
+        <text>{{currentModel.dynasty}}</text>
+      </view>
+      <view class="tag" style="background: {{currentModel.color}}22; color: {{currentModel.color}};">
+        <text>{{currentModel.category}}</text>
+      </view>
+    </view>
+    
+    <text class="model-desc">{{currentModel.description}}</text>
+    
+    <!-- 底部操作按钮 -->
+    <view class="action-buttons">
+      <button class="action-btn btn-reset" bindtap="resetView">
+        <text class="btn-icon">🔄</text>
+        <text>重置视角</text>
+      </button>
+      <button class="action-btn btn-detail" style="background: {{currentModel.color}};" bindtap="gotoDetail">
+        <text class="btn-icon">📖</text>
+        <text>查看详情</text>
+      </button>
+    </view>
+  </view>
+</view>

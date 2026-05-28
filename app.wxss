@@ -1,0 +1,51 @@
+page, view, text, image, button {
+  font-family: -apple-system, BlinkMacSystemFont, "Helvetica Neue", Helvetica, sans-serif;
+}
+/* 加载层：全屏遮罩+传统纹样旋转 */
+.loading-mask {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background-color: var(--white);
+  z-index: 999;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.pattern-spinner {
+  width: 80rpx;
+  height: 80rpx;
+  border: 4rpx solid #e0d8cc;
+  border-top: 4rpx solid var(--red);
+  border-radius: 50%;
+  animation: rotate 1.2s linear infinite;
+  position: relative;
+}
+.pattern-spinner::after {
+  content: "";
+  position: absolute;
+  top: 12rpx;
+  left: 12rpx;
+  width: 48rpx;
+  height: 48rpx;
+  border: 3rpx solid #e0d8cc;
+  border-bottom: 3rpx solid var(--gold);
+  border-radius: 50%;
+}
+@keyframes rotate {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+/* 全局颜色变量 */
+page {
+  --red: #f8163c85;     /* 中国红 */
+  --black: #1A1A1A;   /* 浓墨色 */
+  --gold: #D4AF37;    /* 金色 */
+  --light: #F5F5F5;   /* 米白底色 */
+  background-color: var(--black);
+  color: var(--light);
+  min-height: 100vh;
+}

@@ -1,0 +1,141 @@
+/* 主色调变量（匹配参考图） */
+page {
+  --red: #C41E3A;    /* 故宫红（印章/加载） */
+  --blue: #1A5599;   /* 靛蓝（边框/背景） */
+  --black: #222222;  /* 墨色（文字） */
+  --white: #f5f0e6;  /* 素白（宣纸） */
+  --gold: #D4AF37;   /* 金色（点缀） */
+  font-family: "STSong", "SimSun", "PingFang SC";
+}
+
+/* 加载层：全屏遮罩+传统纹样旋转 */
+.loading-mask {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background-color: var(--white);
+  z-index: 999;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.pattern-spinner {
+  width: 80rpx;
+  height: 80rpx;
+  border: 4rpx solid #e0d8cc;
+  border-top: 4rpx solid var(--red);
+  border-radius: 50%;
+  animation: rotate 1.2s linear infinite;
+  position: relative;
+}
+.pattern-spinner::after {
+  content: "";
+  position: absolute;
+  top: 12rpx;
+  left: 12rpx;
+  width: 48rpx;
+  height: 48rpx;
+  border: 3rpx solid #e0d8cc;
+  border-bottom: 3rpx solid var(--gold);
+  border-radius: 50%;
+}
+@keyframes rotate {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+/* 页面主容器：全屏+背景图 */
+.experience-page {
+  width: 100vw;
+  height: 100vh;
+  position: relative;
+  overflow: hidden;
+}
+/* 背景图：全屏覆盖，保持比例 */
+.bg-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: 1;
+}
+
+/* 透明按钮层：绝对定位覆盖背景图的功能区 */
+.transparent-btn-layer {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 2;
+  pointer-events: auto;
+}
+
+/* 透明按钮：完全覆盖参考图的两个功能区，无视觉遮挡 */
+.transparent-btn {
+  position: absolute;
+  top: 35vh; /* 顶部距离，精准对齐功能区顶部 */
+  width: 38vw; /* 按钮宽度，匹配功能区宽度 */
+  height: 32vh; /* 按钮高度，匹配功能区高度 */
+  opacity: 0; /* 完全透明，不遮挡文字 */
+  z-index: 3;
+}
+
+/* 匠影工坊按钮定位（左侧功能区） */
+.btn-3d {
+  left: 10vw; /* 左侧距离，精准对齐匠影工坊 */
+}
+
+/* 面谱绘心按钮定位（右侧功能区） */
+.btn-ar {
+  right: 10vw; /* 右侧距离，精准对齐面谱绘心 */
+}
+
+/* 底部区域：17%高度，绝对定位底部 */
+.bottom-section {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100vw;
+  height: 17vh;
+  background-color: rgba(26, 85, 153, 0.409); /* 靛蓝半透明背景 */
+  z-index: 4;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: 0 40rpx;
+  box-sizing: border-box;
+}
+
+/* 文字轮播容器 */
+.carousel-container {
+  width: 100%;
+  height: 60rpx;
+  overflow: hidden;
+  position: relative;
+  margin-bottom: 20rpx;
+}
+.carousel-text {
+  position: absolute;
+  top: 0;
+  left: 0;
+  white-space: nowrap;
+  font-size: 24rpx;
+  color: var(--white);
+  line-height: 22rpx;
+  opacity: 0.9;
+}
+
+/* 👇 圆形印章分享图片按钮 - 定位右下角，适配圆形图 */
+.share-seal-img {
+  position: absolute;
+  bottom: 20rpx;    /* 距离底部边距，适配你的页面 */
+  right: 30rpx;     /* 距离右侧边距，和轮播文字不重叠 */
+  width: 110rpx;    /* 按钮大小，可根据需要微调 */
+  height: 110rpx;   /* 和宽度一致，适配圆形图片 */
+  z-index: 5;       /* 层级高于轮播，确保可点击 */
+}

@@ -1,0 +1,117 @@
+/* 全局样式重置 */
+page {
+  font-family: "PingFang SC", "Microsoft YaHei", sans-serif;
+  background-color: #F5F2E9;
+  color: #333333;
+  font-size: 32rpx;
+  line-height: 1.6;
+}
+view, input, button, textarea {
+  box-sizing: border-box;
+}
+/* 通用容器 */
+.container {
+  padding: 30rpx 40rpx;
+  min-height: 100vh;
+}
+/* 标题样式（一级/二级） */
+.title-primary {
+  font-size: 48rpx;
+  font-weight: 700;
+  color: #C8102E;
+  text-align: center;
+  margin: 20rpx 0 40rpx;
+}
+.title-secondary {
+  font-size: 36rpx;
+  font-weight: 600;
+  color: #222222;
+  margin: 30rpx 0 20rpx;
+}
+/* 通用按钮（国风渐变，答辩美化核心） */
+.btn-common {
+  width: 100%;
+  height: 90rpx;
+  line-height: 90rpx;
+  background: linear-gradient(90deg, #C8102E, #E63946);
+  color: #FFFFFF;
+  font-size: 36rpx;
+  font-weight: 600;
+  border-radius: 45rpx;
+  border: none;
+  margin: 30rpx 0;
+}
+.btn-common:active {
+  opacity: 0.8;
+}
+/* 输入框样式 */
+.input-common {
+  width: 100%;
+  height: 80rpx;
+  line-height: 80rpx;
+  padding: 0 30rpx;
+  border: 2rpx solid #E0E0E0;
+  border-radius: 40rpx;
+  background: #FFFFFF;
+  margin: 15rpx 0;
+  font-size: 32rpx;
+}
+/* 多行文本框 */
+.textarea-common {
+  width: 100%;
+  min-height: 200rpx;
+  padding: 30rpx;
+  border: 2rpx solid #E0E0E0;
+  border-radius: 20rpx;
+  background: #FFFFFF;
+  margin: 15rpx 0;
+  font-size: 32rpx;
+  resize: none;
+}
+/* 加载动画容器 */
+.loading {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 50rpx 0;
+  color: #666666;
+}
+/* 空状态/提示文本 */
+.tip-text {
+  text-align: center;
+  color: #666666;
+  padding: 50rpx 0;
+  font-size: 30rpx;
+}
+/* 结果展示容器（大模型/AR识别结果） */
+.result-box {
+  width: 100%;
+  padding: 30rpx;
+  border-radius: 20rpx;
+  background: #FFFFFF;
+  margin: 20rpx 0;
+  min-height: 300rpx;
+  border: 2rpx solid #F0E6D2;
+}
+/* 多选框/单选框通用样式 */
+.option-item {
+  display: inline-block;
+  margin: 15rpx 20rpx;
+  padding: 15rpx 30rpx;
+  border: 2rpx solid #E0E0E0;
+  border-radius: 30rpx;
+  background: #FFFFFF;
+}
+.option-item.active {
+  border-color: #C8102E;
+  color: #C8102E;
+  font-weight: 600;
+}
+/* 图片/视频预览样式 */
+.media-preview {
+  width: 100%;
+  height: 400rpx;
+  border-radius: 20rpx;
+  object-fit: cover;
+  margin: 20rpx 0;
+}

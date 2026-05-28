@@ -1,0 +1,37 @@
+<!-- 加载层：传统纹样旋转动画 -->
+<view class="loading-mask" hidden="{{!isLoading}}">
+  <view class="pattern-spinner"></view>
+</view>
+
+<!-- 页面主容器：背景图+透明按钮+底部轮播 -->
+<view class="experience-page">
+  <!-- 背景图（替换为你的实际图片路径） -->
+  <image class="bg-img" src="/static/images/fei.jpg"></image>
+
+  <!-- 透明功能按钮层（完全覆盖参考图的两个功能区） -->
+  <view class="transparent-btn-layer">
+    <!-- 匠影工坊透明跳转按钮 -->
+    <view class="transparent-btn btn-3d" bindtap="goto3DPage"></view>
+    <!-- 面谱绘心透明跳转按钮 -->
+    <view class="transparent-btn btn-ar" bindtap="gotoARPage"></view>
+  </view>
+
+  <!-- 底部区域：20%高度【保留文字轮播】+ 印章图片分享按钮 -->
+<view class="bottom-section">
+  <!-- 👇 文字轮播：代码完全保留，无任何修改 -->
+  <view class="carousel-container">
+    <view class="carousel-text" animation="{{carouselAni}}">
+      非遗文化承载中华千年智慧 · 数字技术让传统技艺活起来 · 3D+AR打造沉浸式非遗体验 · 让非遗在新时代绽放新生
+    </view>
+  </view>
+  <!-- 👇 替换为你的圆形印章图片分享按钮，绑定点击事件 -->
+  <!-- 分享图片按钮：替换为你的分享图片实际路径 -->
+  <image 
+    class="share-seal-img" 
+    src="/static/images/share_btn.jpg"
+    bindtap="onShareTap"
+    mode="widthFix"
+  ></image>
+  <!-- 保持图片比例，防止变形 -->
+  </view>
+</view>

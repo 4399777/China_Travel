@@ -1,0 +1,21 @@
+<!-- 全屏背景图 -->
+<image class="bg-img" src="/static/images/hero-bg-full.jpg" mode="widthFix"></image>
+
+<!-- 功能卡片按钮区域 -->
+<view class="card-container">
+  <!-- 定制化文旅规划卡片 -->
+  <image 
+    class="func-card" 
+    src="/static/images/plan-card.jpg" 
+    mode="widthFix"
+    bindtap="goToPlan"
+  ></image>
+
+  <!-- 沉浸式非遗体验卡片 -->
+  <image 
+    class="func-card" 
+    src="/static/images/experience-card.jpg" 
+    mode="widthFix"
+    bindtap="goToExperience"
+  ></image>
+</view>

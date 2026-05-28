@@ -1,0 +1,297 @@
+/* 匠影工坊 - 非遗3D模型展示样式 */
+page {
+  background: #0f0f1a;
+  font-family: "STSong", "SimSun", "PingFang SC", sans-serif;
+  color: #e8e8e8;
+  overflow: hidden;
+  height: 100vh;
+}
+
+/* ========== 页面容器 ========== */
+.page-container {
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+  overflow: hidden;
+  background: linear-gradient(180deg, #0f0f1a 0%, #1a1a2e 40%, #16213e 100%);
+}
+
+/* ========== 3D展示区 ========== */
+.viewer-section {
+  flex: 1;
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 50vh;
+  overflow: hidden;
+}
+
+/* 旋转提示 */
+.rotate-hint {
+  position: absolute;
+  top: 30rpx;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 10;
+  display: flex;
+  align-items: center;
+  gap: 10rpx;
+  background: rgba(255, 255, 255, 0.08);
+  backdrop-filter: blur(10px);
+  padding: 12rpx 30rpx;
+  border-radius: 40rpx;
+  border: 1rpx solid rgba(255, 255, 255, 0.12);
+  transition: opacity 0.3s ease;
+}
+.hint-icon {
+  font-size: 28rpx;
+}
+.hint-text {
+  font-size: 22rpx;
+  color: rgba(255, 255, 255, 0.7);
+}
+
+/* 模型舞台 */
+.model-stage {
+  width: 500rpx;
+  height: 500rpx;
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  perspective: 1200rpx;
+}
+
+/* 背景光环 */
+.glow-ring {
+  position: absolute;
+  width: 400rpx;
+  height: 400rpx;
+  border-radius: 50%;
+  border: 2rpx solid rgba(212, 175, 55, 0.3);
+  box-shadow: 
+    0 0 60rpx rgba(212, 175, 55, 0.15),
+    0 0 120rpx rgba(212, 175, 55, 0.08),
+    inset 0 0 60rpx rgba(212, 175, 55, 0.05);
+  animation: ringPulse 3s ease-in-out infinite;
+}
+@keyframes ringPulse {
+  0%, 100% { 
+    transform: scale(1);
+    opacity: 0.6;
+  }
+  50% { 
+    transform: scale(1.05);
+    opacity: 1;
+  }
+}
+
+/* 3D模型图片 */
+.model-3d-image {
+  width: 320rpx;
+  height: 400rpx;
+  position: relative;
+  z-index: 2;
+  transition: transform 0.08s ease-out;
+  filter: drop-shadow(0 20rpx 60rpx rgba(0, 0, 0, 0.5));
+  border-radius: 20rpx;
+}
+
+/* 粒子装饰 */
+.particles {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0;
+  pointer-events: none;
+  z-index: 1;
+}
+.particle {
+  position: absolute;
+  width: 6rpx;
+  height: 6rpx;
+  background: #D4AF37;
+  border-radius: 50%;
+  animation: float 4s ease-in-out infinite;
+  opacity: 0.6;
+}
+.p1 { top: 15%; left: 20%; animation-delay: 0s; }
+.p2 { top: 25%; right: 18%; animation-delay: 0.8s; }
+.p3 { bottom: 20%; left: 25%; animation-delay: 1.6s; }
+.p4 { bottom: 30%; right: 22%; animation-delay: 2.4s; }
+.p5 { top: 50%; left: 10%; animation-delay: 1.2s; }
+.p6 { top: 45%; right: 12%; animation-delay: 3.0s; }
+@keyframes float {
+  0%, 100% { 
+    transform: translateY(0) scale(1);
+    opacity: 0.6;
+  }
+  50% { 
+    transform: translateY(-30rpx) scale(1.5);
+    opacity: 1;
+  }
+}
+
+/* ========== 模型选择卡片 ========== */
+.model-selector {
+  height: 180rpx;
+  padding: 16rpx 0;
+  background: rgba(15, 15, 26, 0.6);
+  backdrop-filter: blur(20px);
+  border-top: 1rpx solid rgba(255, 255, 255, 0.06);
+  border-bottom: 1rpx solid rgba(255, 255, 255, 0.06);
+}
+.model-scroll {
+  width: 100%;
+  height: 100%;
+  white-space: nowrap;
+}
+.model-cards {
+  display: inline-flex;
+  gap: 20rpx;
+  padding: 0 30rpx;
+  height: 100%;
+  align-items: center;
+}
+.model-card {
+  display: inline-flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8rpx;
+  padding: 0;
+  transition: all 0.3s ease;
+  border-radius: 20rpx;
+  border: 3rpx solid transparent;
+  background: rgba(255, 255, 255, 0.03);
+}
+.model-card.active {
+  transform: translateY(-8rpx);
+  box-shadow: 0 8rpx 30rpx rgba(0, 0, 0, 0.4);
+}
+
+.card-img-wrap {
+  width: 120rpx;
+  height: 100rpx;
+  border-radius: 16rpx;
+  overflow: hidden;
+  position: relative;
+}
+.card-img {
+  width: 100%;
+  height: 100%;
+}
+.card-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.5);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.check-icon {
+  color: #D4AF37;
+  font-size: 36rpx;
+  font-weight: bold;
+}
+.card-name {
+  font-size: 20rpx;
+  color: rgba(255, 255, 255, 0.8);
+  text-align: center;
+  max-width: 120rpx;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+.model-card.active .card-name {
+  color: #D4AF37;
+  font-weight: bold;
+}
+
+/* ========== 底部信息面板 ========== */
+.info-panel {
+  padding: 24rpx 30rpx 30rpx;
+  background: rgba(15, 15, 26, 0.85);
+  backdrop-filter: blur(20px);
+  border-top: 2rpx solid;
+}
+.info-header {
+  margin-bottom: 16rpx;
+}
+.info-title-row {
+  display: flex;
+  align-items: center;
+  gap: 12rpx;
+  margin-bottom: 6rpx;
+}
+.color-dot {
+  width: 12rpx;
+  height: 12rpx;
+  border-radius: 50%;
+  box-shadow: 0 0 10rpx currentColor;
+}
+.model-title {
+  font-size: 36rpx;
+  font-weight: bold;
+  color: #fff;
+}
+.model-subtitle {
+  font-size: 24rpx;
+  color: rgba(255, 255, 255, 0.5);
+  padding-left: 24rpx;
+}
+.info-tags {
+  display: flex;
+  gap: 16rpx;
+  margin-bottom: 16rpx;
+}
+.tag {
+  padding: 6rpx 20rpx;
+  border-radius: 20rpx;
+  font-size: 20rpx;
+  font-weight: 500;
+}
+.model-desc {
+  font-size: 24rpx;
+  color: rgba(255, 255, 255, 0.65);
+  line-height: 1.6;
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 2;
+  overflow: hidden;
+  margin-bottom: 20rpx;
+}
+
+/* 操作按钮 */
+.action-buttons {
+  display: flex;
+  gap: 20rpx;
+}
+.action-btn {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8rpx;
+  height: 70rpx;
+  border-radius: 35rpx;
+  font-size: 26rpx;
+  color: #fff;
+  border: none;
+  background: rgba(255, 255, 255, 0.08);
+  padding: 0;
+  line-height: 70rpx;
+}
+.action-btn::after {
+  border: none;
+}
+.btn-reset {
+  border: 1rpx solid rgba(255, 255, 255, 0.2);
+}
+.btn-icon {
+  font-size: 28rpx;
+}

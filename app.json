@@ -1,0 +1,52 @@
+{
+  "pages": [
+    "pages/index/index",
+    "pages/plan/plan",
+    "pages/experience/experience",
+    "pages/mine/mine",
+    "pages/3d_model/3d_model",
+    "pages/ar_face/ar_face"
+  ],
+  "permission": {
+    "scope.camera": {
+      "desc": "用于AR脸谱DIY的摄像头拍摄"
+    },
+    "scope.writePhotosAlbum": {
+      "desc": "用于保存制作的AR脸谱图片"
+    }
+  },
+  "window": {
+    "backgroundTextStyle": "light",
+    "navigationBarBackgroundColor": "#C8102E",
+    "navigationBarTitleText": "非遗文旅AI助手",
+    "navigationBarTextStyle": "black",
+    "backgroundColor": "#1A1A1A",
+    "enablePullDownRefresh": false
+  },
+  "tabBar": {
+    "color": "#FFFFFF",
+    "selectedColor": "#D4AF37",
+    "backgroundColor": "#C8102E",
+    "borderStyle": "white",
+    "list": [
+      {
+        "pagePath": "pages/index/index",
+        "text": "首页"
+      },
+      {
+        "pagePath": "pages/plan/plan",
+        "text": "文旅规划"
+      },
+      {
+        "pagePath": "pages/experience/experience",
+        "text": "交互体验"
+      },
+      {
+        "pagePath": "pages/mine/mine",
+        "text": "个人中心"
+      }
+    ]
+  },
+  "style": "v2",
+  "sitemapLocation": "sitemap.json"
+}

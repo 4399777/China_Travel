@@ -1,0 +1,64 @@
+<view class="container">
+  <!-- 加载动画（传统纹样旋转，与experience页一致） -->
+  <view class="loading-mask" wx:if="{{isLoading}}">
+    <view class="pattern-spinner"></view>
+  </view>
+
+  <!-- 主内容区 -->
+  <view class="main-content" wx:else>
+    <!-- 顶部操作栏 -->
+    <view class="top-bar">
+      <text class="title">🧳 非遗文旅AI助手</text>
+      <!-- ✅ 修复：删除SVG，用文字按钮替代（无报错） -->
+      <view class="new-session-btn" bindtap="createNewSession">
+        <text class="btn-text">🖌️</text>
+      </view>
+    </view>
+
+    <!-- 聊天区域（剪纸肌理+水墨山水背景） -->
+    <view class="chat-wrapper">
+      <image class="chat-bg" src="/static/images/show.jpg" mode="aspectFill"></image>
+      <view class="paper-grain-overlay"></view>
+      <scroll-view 
+        class="chat-box" 
+        scroll-y 
+        enhanced
+        show-scrollbar="{{false}}"
+        scroll-into-view="last"
+      >
+      <!-- 初始问候 -->
+      <view class="ai-msg" wx:if="{{chatList.length === 0}}">
+        <text class="avatar">🤖</text>
+        <view class="content ai-bubble">{{aiInfo.greeting}}</view>
+      </view>
+      <!-- 聊天记录 -->
+      <block wx:for="{{chatList}}" wx:key="index">
+        <view class="user-msg" wx:if="{{item.role === 'user'}}">
+          <text class="avatar">👤</text>
+          <view class="content user-bubble">{{item.content}}</view>
+        </view>
+        <view class="ai-msg" wx:elif="{{item.role === 'ai'}}">
+          <text class="avatar">🤖</text>
+          <view class="content ai-bubble">{{item.content}}</view>
+        </view>
+      </block>
+      <view id="last"></view>
+    </scroll-view>
+    </view>
+
+    <!-- 底部输入栏 -->
+    <view class="input-bar">
+      <input 
+        class="input" 
+        placeholder="输入你的旅行诉求..." 
+        value="{{userInput}}"
+        bindinput="inputChange"
+        confirm-type="send"
+        bindconfirm="sendMsg"
+      />
+      <view class="send-btn" bindtap="sendMsg">
+        <text class="paper-plane">✈️</text>
+      </view>
+    </view>
+  </view>
+</view>
