@@ -13,7 +13,7 @@
 
 ## 🎬 Demo 演示
 
-<video src="demo/demo.mp4" controls width="100%"></video>
+📹 [点击下载演示视频 (17MB)](demo/demo.mp4)
 
 ## 🛠 技术栈
 
