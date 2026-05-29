@@ -7,7 +7,7 @@ Page({
     userInput: '',
     chatList: [],
     aiInfo: {
-      name: "小美",
+      name: "小帅",
       greeting: "哈喔~今天想规划什么样的旅行呢？"
     }
   },
