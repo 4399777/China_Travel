@@ -11,7 +11,7 @@
       <text class="title">🧳 非遗文旅AI助手</text>
       <!-- ✅ 修复：删除SVG，用文字按钮替代（无报错） -->
       <view class="new-session-btn" bindtap="createNewSession">
-        <text class="btn-text">🤖</text>
+        <text class="btn-text">🖌️</text>
       </view>
     </view>
 
